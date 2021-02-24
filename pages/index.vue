@@ -6,6 +6,7 @@
 		<Button class="button bg-blue hover:bg-blue-dark">
 			<span>Start a cycle</span>
 		</Button>
+		<Card class="card" />
 	</section>
 </template>
 
@@ -16,6 +17,7 @@
 	import Countdown from '~/components/atom/Countdown.vue';
 	import Button from '~/components/atom/Button.vue';
 	import Profile from '~/components/molecules/Profile.vue';
+	import Card from '~/components/organisms/Card.vue';
 
 	interface Head {
 		title: string;
@@ -32,6 +34,7 @@
 			Countdown,
 			Button,
 			Profile,
+			Card,
 		},
 	});
 </script>
