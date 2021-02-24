@@ -3,7 +3,7 @@
 		<Profile class="profile" />
 		<CompletedChallenges class="challenges" />
 		<Countdown class="countdown" />
-		<Button class="button bg-blue hover:bg-blue-dark">
+		<Button class="button bg-blue hover:bg-blue-dark h-20 w-full">
 			<span>Start a cycle</span>
 		</Button>
 		<Card class="card" />

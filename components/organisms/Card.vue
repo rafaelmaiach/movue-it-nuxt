@@ -1,6 +1,7 @@
 <template>
-	<div class="bg-white rounded-md flex flex-1 w-full mt-8 md:mt-0 shadow-sm p-10 md:p-16">
-		<StartCycle />
+	<div class="bg-white rounded-md flex flex-1 w-full mt-8 md:mt-0 shadow-sm">
+		<StartCycle v-if="false" />
+		<Challenge v-else />
 	</div>
 </template>
 
@@ -8,10 +9,12 @@
 	import Vue from 'vue';
 
 	import StartCycle from '~/components/molecules/StartCycle.vue';
+	import Challenge from '~/components/molecules/Challenge.vue';
 
 	export default Vue.extend({
 		components: {
 			StartCycle,
+			Challenge,
 		},
 	});
 </script>

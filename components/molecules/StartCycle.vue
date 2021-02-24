@@ -1,5 +1,5 @@
 <template>
-	<section class="flex flex-col flex-1 justify-center items-center">
+	<section class="flex flex-col flex-1 justify-center items-center p-10 md:p-16">
 		<h1 class="font-medium text-center text-2xl">
 			Start a new cycle to receive new challenges
 		</h1>
