@@ -1,6 +1,7 @@
 <template>
-	<section class="pomodoro md:mt-16">
+	<section class="pomodoro md:mt-16 sm:gap-x-10 md:gap-x-20">
 		<Profile class="profile" />
+		<CompletedChallenges class="challenges" />
 	</section>
 </template>
 
@@ -8,6 +9,7 @@
 	import Vue from 'vue';
 
 	import Profile from '~/components/molecules/Profile.vue';
+	import CompletedChallenges from '~/components/atom/CompletedChallenges.vue';
 
 	interface Head {
 		title: string;
@@ -21,6 +23,7 @@
 		},
 		components: {
 			Profile,
+			CompletedChallenges,
 		},
 	});
 </script>
@@ -28,6 +31,7 @@
 <style lang="postcss" scoped>
 	.pomodoro {
 		@apply grid;
+
 		grid-template-areas:
 			"profile"
 			"challenges"
@@ -44,7 +48,8 @@
 
 	@media (min-width: 640px) {
 		.pomodoro {
-			grid-template-columns: 1fr 1fr;
+			@apply grid-cols-2;
+
 			grid-template-areas:
 				"profile card"
 				"challenges card"
