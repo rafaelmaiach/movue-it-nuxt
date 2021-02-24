@@ -1,5 +1,5 @@
 <template>
-	<header class="py-10 flex items-center">
+	<header class="pb-10 flex items-center">
 		<p class="xp">
 			0 xp
 		</p>
