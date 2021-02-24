@@ -1,14 +1,18 @@
 <template>
-	<div>
+	<div class="min-h-screen max-w-5xl mx-auto flex flex-col px-5">
+		<ExperienceBar />
 		<Nuxt />
 	</div>
 </template>
 
-<style>
-	*,
-	*::before,
-	*::after {
-		box-sizing: border-box;
-		margin: 0;
-	}
-</style>
+<script lang="ts">
+	import Vue from 'vue';
+	import ExperienceBar from '~/components/atom/ExperienceBar.vue';
+
+	export default Vue.extend({
+		name: 'Default',
+		components: {
+			ExperienceBar,
+		},
+	});
+</script>
