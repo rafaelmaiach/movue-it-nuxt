@@ -2,6 +2,7 @@
 	<section class="pomodoro md:mt-16 sm:gap-x-10 md:gap-x-20">
 		<Profile class="profile" />
 		<CompletedChallenges class="challenges" />
+		<Countdown class="countdown" />
 	</section>
 </template>
 
@@ -10,6 +11,7 @@
 
 	import Profile from '~/components/molecules/Profile.vue';
 	import CompletedChallenges from '~/components/atom/CompletedChallenges.vue';
+	import Countdown from '~/components/atom/Countdown.vue';
 
 	interface Head {
 		title: string;
@@ -24,6 +26,7 @@
 		components: {
 			Profile,
 			CompletedChallenges,
+			Countdown,
 		},
 	});
 </script>
