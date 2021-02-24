@@ -17,6 +17,7 @@ module.exports = {
 		'no-tabs': 'off',
 		semi: ['error', 'always'],
 		'vue/html-indent': ['error', 'tab'],
+		'vue/order-in-components': 'off',
 	},
 	overrides: [
 		{
