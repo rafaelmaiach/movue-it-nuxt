@@ -3,15 +3,19 @@
 		<Profile class="profile" />
 		<CompletedChallenges class="challenges" />
 		<Countdown class="countdown" />
+		<Button class="button bg-blue hover:bg-blue-dark">
+			<span>Start a cycle</span>
+		</Button>
 	</section>
 </template>
 
 <script lang="ts">
 	import Vue from 'vue';
 
-	import Profile from '~/components/molecules/Profile.vue';
 	import CompletedChallenges from '~/components/atom/CompletedChallenges.vue';
 	import Countdown from '~/components/atom/Countdown.vue';
+	import Button from '~/components/atom/Button.vue';
+	import Profile from '~/components/molecules/Profile.vue';
 
 	interface Head {
 		title: string;
@@ -24,9 +28,10 @@
 			};
 		},
 		components: {
-			Profile,
 			CompletedChallenges,
 			Countdown,
+			Button,
+			Profile,
 		},
 	});
 </script>
