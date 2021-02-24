@@ -12,5 +12,5 @@
 
 body {
 	font-family: 'Inter', sans-serif;
-	@apply text-text;
+	@apply text-text bg-background;
 }
