@@ -11,7 +11,7 @@ export default {
 			{ hid: 'description', name: 'description', content: '' },
 		],
 		link: [
-			{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+			{ rel: 'icon', type: 'image/png', href: '/favicon.png' },
 			{ rel: 'preconnect', href: 'https://fonts.gstatic.com' },
 			{ rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Rajdhani:wght@600&display=swap' },
 		],
