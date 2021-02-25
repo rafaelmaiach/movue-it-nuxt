@@ -23,16 +23,19 @@
 <script lang="ts">
 	import Vue from 'vue';
 
-	const MINUTES = 1;
+	const MINUTES = 0.1;
+	let TIMEOUT_REFERENCE: ReturnType<typeof setTimeout>;
 
 	export default Vue.extend({
 		data () {
 			return {
 				time: MINUTES * 60,
-				active: true,
 			};
 		},
 		computed: {
+			isActive () {
+				return this.$store.state.isActive;
+			},
 			minutes (): string[] {
 				const remainingMinutes = Math.floor(this.time / 60);
 				return this.formattedTime(remainingMinutes);
@@ -43,12 +46,18 @@
 			},
 		},
 		watch: {
-			active (newValue: boolean) {
+			isActive (newValue: boolean) {
 				this.runCountdown(newValue);
+
+				if (!newValue) {
+					this.time = MINUTES * 60;
+				}
 			},
 			time (newValue: number) {
 				if (newValue > 0) {
 					this.runCountdown(true);
+				} else if (newValue === 0) {
+					this.$emit('completed');
 				}
 			},
 		},
@@ -57,8 +66,10 @@
 				return `${time}`.padStart(2, '0').split('');
 			},
 			runCountdown (flag: boolean) {
-				if (flag) {
-					setTimeout(() => { this.time -= 1; }, 1000);
+				if (this.isActive && flag) {
+					TIMEOUT_REFERENCE = setTimeout(() => { this.time -= 1; }, 1000);
+				} else {
+					clearTimeout(TIMEOUT_REFERENCE);
 				}
 			},
 		},

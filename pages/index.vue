@@ -2,8 +2,26 @@
 	<section class="pomodoro md:mt-16 sm:gap-x-10 md:gap-x-20">
 		<Profile class="profile" />
 		<CompletedChallenges class="challenges" />
-		<Countdown class="countdown" />
-		<Button class="button bg-blue hover:bg-blue-dark h-20 w-full">
+		<Countdown class="countdown" @completed="getNewChallenge" />
+		<Button
+			v-if="isCompleted"
+			disabled
+			class="button bg-white text-text border-b-2 border-green cursor-not-allowed h-20 w-full"
+		>
+			<span>Cycle completed</span>
+		</Button>
+		<Button
+			v-else-if="isCountdownActive"
+			class="button bg-white text-text hover:bg-red hover:text-white h-20 w-full"
+			@click.native="setCountdownState(false)"
+		>
+			<span>Abandon cycle</span>
+		</Button>
+		<Button
+			v-else
+			class="button bg-blue hover:bg-blue-dark h-20 w-full"
+			@click.native="setCountdownState(true)"
+		>
 			<span>Start a cycle</span>
 		</Button>
 		<Card class="card" />
@@ -35,6 +53,39 @@
 			Button,
 			Profile,
 			Card,
+		},
+		data () {
+			return {
+				isCompleted: false,
+			};
+		},
+		computed: {
+			isCountdownActive (): boolean {
+				return this.$store.state.isActive;
+			},
+			challengesLength (): number {
+				return this.$store.state.allChallenges.length;
+			},
+		},
+		methods: {
+			setCountdownState (flag: boolean) {
+				this.isCompleted = false;
+				this.$store.commit('SET_IS_ACTIVE', flag);
+			},
+			getNewChallenge () {
+				this.isCompleted = true;
+				const index = Math.floor(Math.random() * this.challengesLength) - 1;
+				this.$store.commit('SET_CURRENT_CHALLENGE_INDEX', index);
+
+				this.$nextTick(() => {
+					const card: HTMLElement | null = document.getElementById('challenge');
+					const mq = window.matchMedia('(max-width: 639px)');
+
+					if (card && mq.matches) {
+						card.scrollIntoView({ block: 'start', behavior: 'smooth' });
+					}
+				});
+			},
 		},
 	});
 </script>

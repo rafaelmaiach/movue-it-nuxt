@@ -4,7 +4,19 @@
 			Completed challenges
 		</p>
 		<p class="text-2xl">
-			00
+			{{ completedChallenges }}
 		</p>
 	</div>
 </template>
+
+<script lang="ts">
+	import Vue from 'vue';
+
+	export default Vue.extend({
+		computed: {
+			completedChallenges (): number {
+				return this.$store.state.completedChallenges;
+			},
+		},
+	});
+</script>
