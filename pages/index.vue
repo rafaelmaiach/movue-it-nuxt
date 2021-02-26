@@ -48,7 +48,7 @@
 	}
 
 	export default Vue.extend({
-		head ():Head {
+		head (): Head {
 			return {
 				title: 'Home | move.it',
 			};
@@ -58,6 +58,11 @@
 			Countdown,
 			Profile,
 			Card,
+		},
+		mounted () {
+			if ('Notification' in window) {
+				Notification.requestPermission();
+			}
 		},
 		computed: {
 			...mapState('Countdown', {
@@ -80,6 +85,14 @@
 				const index = getRandomNumber(0, this.challengesLength);
 				this.setCountdownHasCompleted(true);
 				this.setCurrentChallengeIndex(index);
+
+				if (Notification.permission === 'granted') {
+					new Audio('/notification.mp3').play();
+					new Notification('New Challenge!', {
+							body: 'A new challenge has started! Go complete it!',
+							icon: '/favicon.png',
+					});
+				}
 
 				this.$nextTick(() => {
 					scrollToElement('#challenge');

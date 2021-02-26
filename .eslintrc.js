@@ -14,6 +14,7 @@ module.exports = {
 	rules: {
 		'comma-dangle': ['error', 'always-multiline'],
 		indent: ['error', 'tab'],
+		'no-new': 'off',
 		'no-tabs': 'off',
 		semi: ['error', 'always'],
 		'vue/html-indent': ['error', 'tab'],
