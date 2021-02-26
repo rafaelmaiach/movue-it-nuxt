@@ -1,7 +1,7 @@
 import { MutationTree } from 'vuex';
 import { State, Getters, RootState, Mutations } from './types';
 
-const MINUTES = 0.1;
+const MINUTES = 0.05;
 
 export const state = ():State => ({
 	time: MINUTES * 60,

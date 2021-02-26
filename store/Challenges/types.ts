@@ -28,6 +28,5 @@ export type RootState = ReturnType<() => State>
 
 export enum Mutations {
 	SET_CURRENT_CHALLENGE_INDEX = 'SET_CURRENT_CHALLENGE_INDEX',
-	SET_CURRENT_XP = 'SET_CURRENT_XP',
-	LEVEL_UP = 'LEVEL_UP',
+	COMPLETE_CHALLENGE = 'COMPLETE_CHALLENGE',
 }

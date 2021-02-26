@@ -16,30 +16,37 @@ export const state = (): State => ({
 
 export const getters: Getters = {
 	challengesLength: ({ allChallenges }: State) => allChallenges.length,
-	currentXpPercentage: ({ xp }: State) => (xp.current / xp.end) * 100,
+	currentXpPercentage: ({ xp }: State) => Number(((xp.current / xp.end) * 100).toFixed(2)),
 	currentChallenge: ({ allChallenges, currentChallengeIndex }: State) =>
-		currentChallengeIndex ? allChallenges[currentChallengeIndex] : null,
+		(typeof currentChallengeIndex === 'number') ? allChallenges[currentChallengeIndex] : null,
 };
 
 export const mutations: MutationTree<RootState> = {
 	[Mutations.SET_CURRENT_CHALLENGE_INDEX]: (state: State, index: number) => {
 		state.currentChallengeIndex = index;
 	},
-	[Mutations.SET_CURRENT_XP]: (state: State, newCurrentXp: number) => {
-		state.xp = {
-			...state.xp,
-			current: newCurrentXp,
-		};
-	},
-	[Mutations.LEVEL_UP]: (state: State, xpAmount: number) => {
-		const remainingXp = (state.xp.current + xpAmount) - state.xp.end;
-		const experienceToNextLevel = Math.pow((state.level + 1) * 4, 2);
+	[Mutations.COMPLETE_CHALLENGE]: (state: State, xpAmount: number) => {
+		const { current, end } = state.xp;
+		const shouldLevelUp = (xpAmount + current) >= end;
 
-		state.level += 1;
-		state.xp = {
-			current: remainingXp,
-			start: 0,
-			end: experienceToNextLevel,
-		};
+		state.completedChallenges += 1;
+
+		if (shouldLevelUp) {
+			state.level += 1;
+
+			const remainingXp = (current + xpAmount) - end;
+			const experienceToNextLevel = Math.pow((state.level + 1) * 4, 2);
+
+			state.xp = {
+				current: remainingXp,
+				start: 0,
+				end: experienceToNextLevel,
+			};
+		} else {
+			state.xp = {
+				...state.xp,
+				current: current + xpAmount,
+			};
+		}
 	},
 };

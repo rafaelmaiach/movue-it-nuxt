@@ -18,7 +18,7 @@
 			<button
 				kind="challenge"
 				class="button text-white bg-red hover:bg-red-dark h-3 w-1/2"
-				@click="challengeFailed"
+				@click="resetChallenges"
 			>
 				Failed
 			</button>
@@ -51,15 +51,17 @@
 				setIsActive: `Countdown/${CountdownMT.SET_IS_ACTIVE}`,
 				setHasCompleted: `Countdown/${CountdownMT.SET_HAS_COMPLETED}`,
 				setCurrentChallengeIndex: `Challenges/${ChallengesMT.SET_CURRENT_CHALLENGE_INDEX}`,
+				completeChallenge: `Challenges/${ChallengesMT.COMPLETE_CHALLENGE}`,
 			}),
-			challengeFailed () {
+			resetChallenges () {
 				this.resetTime();
 				this.setIsActive(false);
 				this.setHasCompleted(false);
 				this.setCurrentChallengeIndex(null);
 			},
 			challengeSucceeded () {
-
+				this.resetChallenges();
+				this.completeChallenge(this.amount);
 			},
 		},
 	});
