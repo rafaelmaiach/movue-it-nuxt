@@ -15,18 +15,10 @@
 			</p>
 		</main>
 		<footer class="flex w-full gap-x-2">
-			<button
-				kind="challenge"
-				class="button text-white bg-red hover:bg-red-dark h-3 w-1/2"
-				@click="resetChallenges"
-			>
+			<button kind="challenge" class="button failed" @click="resetChallenges">
 				Failed
 			</button>
-			<button
-				kind="challenge"
-				class="button text-white bg-green hover:bg-green-dark h-3 w-1/2"
-				@click="challengeSucceeded"
-			>
+			<button kind="challenge" class="button succeeded" @click="challengeSucceeded">
 				Completed
 			</button>
 		</footer>
@@ -37,7 +29,10 @@
 	import Vue from 'vue';
 	import { mapMutations } from 'vuex';
 	import { Mutations as CountdownMT } from '~/store/Countdown/types';
-	import { Challenge as ChallengeType, Mutations as ChallengesMT } from '~/store/Challenges/types';
+	import {
+		Challenge as ChallengeType,
+		Mutations as ChallengesMT,
+	} from '~/store/Challenges/types';
 
 	export default Vue.extend<unknown, any, unknown, ChallengeType>({
 		props: {

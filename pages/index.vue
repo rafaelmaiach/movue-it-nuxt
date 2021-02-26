@@ -1,33 +1,35 @@
 <template>
-	<section class="pomodoro md:mt-16 sm:gap-x-10 md:gap-x-20">
-		<Profile id="profile" />
-		<CompletedChallenges id="challenges" />
-		<Countdown id="countdown" @completed="getNewChallenge" />
-		<button
-			v-if="hasCountdownCompleted"
-			id="button"
-			disabled
-			class="button bg-white text-text border-b-2 border-green cursor-not-allowed h-20 w-full"
-		>
-			<span>Cycle completed</span>
-		</button>
-		<button
-			v-else-if="isCountdownActive"
-			id="button"
-			class="button bg-white text-text hover:bg-red hover:text-white h-20 w-full"
-			@click="setCountdownState(false)"
-		>
-			<span>Abandon cycle</span>
-		</button>
-		<button
-			v-else
-			id="button"
-			class="button bg-blue text-white hover:bg-blue-dark h-20 w-full"
-			@click="setCountdownState(true)"
-		>
-			<span>Start a cycle</span>
-		</button>
-		<Card id="card" />
+	<section class="flex flex-col lg:flex-row flex-1 lg:flex-none lg:mt-16 sm:gap-x-10 md:gap-x-20">
+		<div class="flex flex-col w-full lg:w-1/2">
+			<Profile id="profile" />
+			<CompletedChallenges id="challenges" />
+			<Countdown id="countdown" @completed="getNewChallenge" />
+			<button
+				v-if="hasCountdownCompleted"
+				id="button"
+				disabled
+				class="button completed"
+			>
+				<span>Cycle completed</span>
+			</button>
+			<button
+				v-else-if="isCountdownActive"
+				id="button"
+				class="button abandon"
+				@click="setCountdownState(false)"
+			>
+				<span>Abandon cycle</span>
+			</button>
+			<button
+				v-else
+				id="button"
+				class="button start"
+				@click="setCountdownState(true)"
+			>
+				<span>Start a cycle</span>
+			</button>
+		</div>
+		<Card id="card" class="w-full lg:w-1/2" />
 	</section>
 </template>
 
@@ -39,7 +41,7 @@
 	import { scrollToElement, getRandomNumber } from '~/utils';
 
 	import CompletedChallenges from '~/components/atom/CompletedChallenges.vue';
-	import Countdown from '~/components/atom/Countdown.vue';
+	import Countdown from '~/components/molecules/Countdown.vue';
 	import Profile from '~/components/molecules/Profile.vue';
 	import Card from '~/components/organisms/Card.vue';
 
@@ -101,34 +103,3 @@
 		},
 	});
 </script>
-
-<style lang="postcss" scoped>
-	.pomodoro {
-		@apply grid;
-
-		grid-template-areas:
-			"profile"
-			"challenges"
-			"countdown"
-			"button"
-			"card"
-	}
-
-	#profile { grid-area: profile }
-	#challenges { grid-area: challenges }
-	#countdown { grid-area: countdown }
-	#button { grid-area: button }
-	#card { grid-area: card }
-
-	@media (min-width: 640px) {
-		.pomodoro {
-			@apply grid-cols-2;
-
-			grid-template-areas:
-				"profile card"
-				"challenges card"
-				"countdown card"
-				"button card"
-		}
-	}
-</style>

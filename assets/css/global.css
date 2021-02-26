@@ -14,3 +14,7 @@ body {
 	font-family: 'Inter', sans-serif;
 	@apply text-text bg-background;
 }
+
+.font-rajdhani {
+	font-family: Rajdhani;
+}

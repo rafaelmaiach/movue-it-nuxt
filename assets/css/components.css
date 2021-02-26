@@ -1,3 +1,23 @@
 .button {
-	@apply p-6 rounded-md flex justify-center items-center font-semibold mt-8 transition-colors;
+	@apply p-6 rounded-md flex justify-center items-center font-semibold mt-8 transition-colors w-full;
+}
+
+.button.completed {
+	@apply bg-white text-text border-b-2 border-green cursor-not-allowed h-20;
+}
+
+.button.abandon {
+	@apply bg-white text-text hover:bg-red hover:text-white h-20;
+}
+
+.button.start {
+	@apply bg-blue text-white hover:bg-blue-dark h-20;
+}
+
+.button.failed {
+	@apply text-white bg-red hover:bg-red-dark h-3 w-1/2;
+}
+
+.button.succeeded {
+	@apply text-white bg-green hover:bg-green-dark h-3 w-1/2;
 }
