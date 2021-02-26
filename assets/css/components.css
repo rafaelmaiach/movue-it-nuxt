@@ -1,0 +1,3 @@
+.button {
+	@apply p-6 rounded-md flex justify-center items-center font-semibold mt-8 transition-colors;
+}

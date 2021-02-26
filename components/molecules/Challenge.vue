@@ -15,38 +15,51 @@
 			</p>
 		</main>
 		<footer class="flex w-full gap-x-2">
-			<Button kind="challenge" class="bg-red hover:bg-red-dark h-3 w-1/2">
+			<button
+				kind="challenge"
+				class="button text-white bg-red hover:bg-red-dark h-3 w-1/2"
+				@click="challengeFailed"
+			>
 				Failed
-			</Button>
-			<Button kind="challenge" class="bg-green hover:bg-green-dark h-3 w-1/2">
+			</button>
+			<button
+				kind="challenge"
+				class="button text-white bg-green hover:bg-green-dark h-3 w-1/2"
+				@click="challengeSucceeded"
+			>
 				Completed
-			</Button>
+			</button>
 		</footer>
 	</section>
 </template>
 
 <script lang="ts">
 	import Vue from 'vue';
-	import { Challenge as ChallengeType } from '~/store/Challenges/types';
+	import { mapMutations } from 'vuex';
+	import { Mutations as CountdownMT } from '~/store/Countdown/types';
+	import { Challenge as ChallengeType, Mutations as ChallengesMT } from '~/store/Challenges/types';
 
-	import Button from '~/components/atom/Button.vue';
-
-	export default Vue.extend<unknown, unknown, unknown, ChallengeType>({
-		components: {
-			Button,
-		},
+	export default Vue.extend<unknown, any, unknown, ChallengeType>({
 		props: {
-			type: {
-				type: String,
-				required: true,
+			type: { type: String, required: true },
+			description: { type: String, required: true },
+			amount: { type: Number, required: true },
+		},
+		methods: {
+			...mapMutations({
+				resetTime: `Countdown/${CountdownMT.RESET_TIME}`,
+				setIsActive: `Countdown/${CountdownMT.SET_IS_ACTIVE}`,
+				setHasCompleted: `Countdown/${CountdownMT.SET_HAS_COMPLETED}`,
+				setCurrentChallengeIndex: `Challenges/${ChallengesMT.SET_CURRENT_CHALLENGE_INDEX}`,
+			}),
+			challengeFailed () {
+				this.resetTime();
+				this.setIsActive(false);
+				this.setHasCompleted(false);
+				this.setCurrentChallengeIndex(null);
 			},
-			description: {
-				type: String,
-				required: true,
-			},
-			amount: {
-				type: Number,
-				required: true,
+			challengeSucceeded () {
+
 			},
 		},
 	});

@@ -1,30 +1,33 @@
 <template>
 	<section class="pomodoro md:mt-16 sm:gap-x-10 md:gap-x-20">
-		<Profile class="profile" />
-		<CompletedChallenges class="challenges" />
-		<Countdown class="countdown" @completed="getNewChallenge" />
-		<Button
+		<Profile id="profile" />
+		<CompletedChallenges id="challenges" />
+		<Countdown id="countdown" @completed="getNewChallenge" />
+		<button
 			v-if="hasCountdownCompleted"
+			id="button"
 			disabled
 			class="button bg-white text-text border-b-2 border-green cursor-not-allowed h-20 w-full"
 		>
 			<span>Cycle completed</span>
-		</Button>
-		<Button
+		</button>
+		<button
 			v-else-if="isCountdownActive"
+			id="button"
 			class="button bg-white text-text hover:bg-red hover:text-white h-20 w-full"
-			@click.native="setCountdownState(false)"
+			@click="setCountdownState(false)"
 		>
 			<span>Abandon cycle</span>
-		</Button>
-		<Button
+		</button>
+		<button
 			v-else
-			class="button bg-blue hover:bg-blue-dark h-20 w-full"
-			@click.native="setCountdownState(true)"
+			id="button"
+			class="button bg-blue text-white hover:bg-blue-dark h-20 w-full"
+			@click="setCountdownState(true)"
 		>
 			<span>Start a cycle</span>
-		</Button>
-		<Card class="card" />
+		</button>
+		<Card id="card" />
 	</section>
 </template>
 
@@ -37,7 +40,6 @@
 
 	import CompletedChallenges from '~/components/atom/CompletedChallenges.vue';
 	import Countdown from '~/components/atom/Countdown.vue';
-	import Button from '~/components/atom/Button.vue';
 	import Profile from '~/components/molecules/Profile.vue';
 	import Card from '~/components/organisms/Card.vue';
 
@@ -54,7 +56,6 @@
 		components: {
 			CompletedChallenges,
 			Countdown,
-			Button,
 			Profile,
 			Card,
 		},
@@ -100,11 +101,11 @@
 			"card"
 	}
 
-	.profile { grid-area: profile }
-	.challenges { grid-area: challenges }
-	.countdown { grid-area: countdown }
-	.button { grid-area: button }
-	.card { grid-area: card }
+	#profile { grid-area: profile }
+	#challenges { grid-area: challenges }
+	#countdown { grid-area: countdown }
+	#button { grid-area: button }
+	#card { grid-area: card }
 
 	@media (min-width: 640px) {
 		.pomodoro {
