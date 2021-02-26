@@ -4,7 +4,7 @@
 		<CompletedChallenges class="challenges" />
 		<Countdown class="countdown" @completed="getNewChallenge" />
 		<Button
-			v-if="isCompleted"
+			v-if="hasCountdownCompleted"
 			disabled
 			class="button bg-white text-text border-b-2 border-green cursor-not-allowed h-20 w-full"
 		>
@@ -30,6 +30,10 @@
 
 <script lang="ts">
 	import Vue from 'vue';
+	import { mapState, mapGetters, mapMutations } from 'vuex';
+	import { Mutations as ChallengesMT } from '~/store/Challenges/types';
+	import { Mutations as CountdownMT } from '~/store/Countdown/types';
+	import { scrollToElement, getRandomNumber } from '~/utils';
 
 	import CompletedChallenges from '~/components/atom/CompletedChallenges.vue';
 	import Countdown from '~/components/atom/Countdown.vue';
@@ -54,36 +58,30 @@
 			Profile,
 			Card,
 		},
-		data () {
-			return {
-				isCompleted: false,
-			};
-		},
 		computed: {
-			isCountdownActive (): boolean {
-				return this.$store.state.isActive;
-			},
-			challengesLength (): number {
-				return this.$store.state.allChallenges.length;
-			},
+			...mapState('Countdown', {
+				hasCountdownCompleted: 'hasCompleted',
+				isCountdownActive: 'isActive',
+			}),
+			...mapGetters('Challenges', ['challengesLength']),
 		},
 		methods: {
+			...mapMutations({
+				setCountdownHasCompleted: `Countdown/${CountdownMT.SET_HAS_COMPLETED}`,
+				setCountdownIsActive: `Countdown/${CountdownMT.SET_IS_ACTIVE}`,
+				setCurrentChallengeIndex: `Challenges/${ChallengesMT.SET_CURRENT_CHALLENGE_INDEX}`,
+			}),
 			setCountdownState (flag: boolean) {
-				this.isCompleted = false;
-				this.$store.commit('SET_IS_ACTIVE', flag);
+				this.setCountdownHasCompleted(false);
+				this.setCountdownIsActive(flag);
 			},
 			getNewChallenge () {
-				this.isCompleted = true;
-				const index = Math.floor(Math.random() * this.challengesLength) - 1;
-				this.$store.commit('SET_CURRENT_CHALLENGE_INDEX', index);
+				const index = getRandomNumber(0, this.challengesLength);
+				this.setCountdownHasCompleted(true);
+				this.setCurrentChallengeIndex(index);
 
 				this.$nextTick(() => {
-					const card: HTMLElement | null = document.getElementById('challenge');
-					const mq = window.matchMedia('(max-width: 639px)');
-
-					if (card && mq.matches) {
-						card.scrollIntoView({ block: 'start', behavior: 'smooth' });
-					}
+					scrollToElement('#challenge');
 				});
 			},
 		},

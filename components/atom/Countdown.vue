@@ -2,19 +2,19 @@
 	<div id="countdown" class="flex justify-center items-center mt-8 md:mt-14">
 		<p class="number">
 			<span>
-				{{ minutes[0] }}
+				{{ countdownMinutes[0] }}
 			</span>
 			<span>
-				{{ minutes[1] }}
+				{{ countdownMinutes[1] }}
 			</span>
 		</p>
 		<span id="colon">:</span>
 		<p class="number">
 			<span>
-				{{ seconds[0] }}
+				{{ countdownSeconds[0] }}
 			</span>
 			<span>
-				{{ seconds[1] }}
+				{{ countdownSeconds[1] }}
 			</span>
 		</p>
 	</div>
@@ -22,27 +22,36 @@
 
 <script lang="ts">
 	import Vue from 'vue';
+	import { mapState, mapGetters, mapMutations } from 'vuex';
+	import { Mutations } from '~/store/Countdown/types';
+	import { splitValue } from '~/utils';
 
-	const MINUTES = 0.1;
 	let TIMEOUT_REFERENCE: ReturnType<typeof setTimeout>;
 
 	export default Vue.extend({
-		data () {
-			return {
-				time: MINUTES * 60,
-			};
-		},
 		computed: {
-			isActive () {
-				return this.$store.state.isActive;
+			...mapState('Countdown', ['time', 'isActive']),
+			...mapGetters('Countdown', ['minutes', 'seconds']),
+			countdownMinutes (): string[] {
+				return splitValue(this.minutes);
 			},
-			minutes (): string[] {
-				const remainingMinutes = Math.floor(this.time / 60);
-				return this.formattedTime(remainingMinutes);
+			countdownSeconds (): string[] {
+				return splitValue(this.seconds);
 			},
-			seconds (): string[] {
-				const remainingSeconds = this.time % 60;
-				return this.formattedTime(remainingSeconds);
+		},
+		methods: {
+			...mapMutations('Countdown', {
+				setTime: Mutations.SET_TIME,
+				resetTime: Mutations.RESET_TIME,
+			}),
+			runCountdown (flag: boolean) {
+				if (this.isActive && flag) {
+					TIMEOUT_REFERENCE = setTimeout(() => {
+						this.setTime(this.time - 1);
+					}, 1000);
+				} else {
+					clearTimeout(TIMEOUT_REFERENCE);
+				}
 			},
 		},
 		watch: {
@@ -50,7 +59,7 @@
 				this.runCountdown(newValue);
 
 				if (!newValue) {
-					this.time = MINUTES * 60;
+					this.resetTime();
 				}
 			},
 			time (newValue: number) {
@@ -58,18 +67,6 @@
 					this.runCountdown(true);
 				} else if (newValue === 0) {
 					this.$emit('completed');
-				}
-			},
-		},
-		methods: {
-			formattedTime (time: number) {
-				return `${time}`.padStart(2, '0').split('');
-			},
-			runCountdown (flag: boolean) {
-				if (this.isActive && flag) {
-					TIMEOUT_REFERENCE = setTimeout(() => { this.time -= 1; }, 1000);
-				} else {
-					clearTimeout(TIMEOUT_REFERENCE);
 				}
 			},
 		},

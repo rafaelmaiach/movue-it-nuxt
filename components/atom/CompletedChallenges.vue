@@ -11,12 +11,9 @@
 
 <script lang="ts">
 	import Vue from 'vue';
+	import { mapState } from 'vuex';
 
 	export default Vue.extend({
-		computed: {
-			completedChallenges (): number {
-				return this.$store.state.completedChallenges;
-			},
-		},
+		computed: mapState('Challenges', ['completedChallenges']),
 	});
 </script>
