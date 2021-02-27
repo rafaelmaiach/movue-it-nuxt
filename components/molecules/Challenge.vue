@@ -27,7 +27,8 @@
 
 <script lang="ts">
 	import Vue from 'vue';
-	import { mapMutations } from 'vuex';
+	import { mapState, mapMutations } from 'vuex';
+
 	import { Mutations as CountdownMT } from '~/store/Countdown/types';
 	import {
 		Challenge as ChallengeType,
@@ -40,6 +41,7 @@
 			description: { type: String, required: true },
 			amount: { type: Number, required: true },
 		},
+		computed: mapState('Challenges', ['level', 'xp', 'completedChallenges']),
 		methods: {
 			...mapMutations({
 				resetTime: `Countdown/${CountdownMT.RESET_TIME}`,
@@ -57,6 +59,12 @@
 			challengeSucceeded () {
 				this.resetChallenges();
 				this.completeChallenge(this.amount);
+
+				this.$cookiz.set('movueit', {
+					level: this.level,
+					xp: this.xp,
+					completedChallenges: this.completedChallenges,
+				});
 			},
 		},
 	});

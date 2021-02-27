@@ -35,6 +35,7 @@
 
 <script lang="ts">
 	import Vue from 'vue';
+
 	import { mapState, mapGetters, mapMutations } from 'vuex';
 	import { Mutations as ChallengesMT } from '~/store/Challenges/types';
 	import { Mutations as CountdownMT } from '~/store/Countdown/types';

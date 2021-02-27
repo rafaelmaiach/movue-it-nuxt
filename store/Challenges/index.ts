@@ -1,4 +1,5 @@
 import { MutationTree } from 'vuex';
+
 import { State, Getters, RootState, Mutations } from './types';
 import allChallenges from './data';
 
@@ -54,5 +55,10 @@ export const mutations: MutationTree<RootState> = {
 				current: current + xpAmount,
 			};
 		}
+	},
+	[Mutations.SAVE_COOKIE_DATA] (state, cookie) {
+		state.level = cookie.level;
+		state.xp = cookie.xp;
+		state.completedChallenges = cookie.completedChallenges;
 	},
 };
