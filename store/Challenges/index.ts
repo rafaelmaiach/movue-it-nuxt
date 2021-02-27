@@ -11,6 +11,7 @@ export const state = (): State => ({
 	},
 	completedChallenges: 0,
 	currentChallengeIndex: null,
+	isLevelUpModalOpen: false,
 	allChallenges,
 });
 
@@ -24,6 +25,9 @@ export const getters: Getters = {
 export const mutations: MutationTree<RootState> = {
 	[Mutations.SET_CURRENT_CHALLENGE_INDEX]: (state: State, index: number) => {
 		state.currentChallengeIndex = index;
+	},
+	[Mutations.SET_IS_LEVEL_UP_MODAL_OPEN]: (state: State, flag: boolean) => {
+		state.isLevelUpModalOpen = flag;
 	},
 	[Mutations.COMPLETE_CHALLENGE]: (state: State, xpAmount: number) => {
 		const { current, end } = state.xp;
@@ -42,6 +46,8 @@ export const mutations: MutationTree<RootState> = {
 				start: 0,
 				end: experienceToNextLevel,
 			};
+
+			state.isLevelUpModalOpen = true;
 		} else {
 			state.xp = {
 				...state.xp,

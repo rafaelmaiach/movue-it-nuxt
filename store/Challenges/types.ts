@@ -15,6 +15,7 @@ export interface State {
 	xp: XP;
 	completedChallenges: number;
 	currentChallengeIndex: number | null;
+	isLevelUpModalOpen: boolean;
 	allChallenges: Challenge[];
 }
 
@@ -28,5 +29,6 @@ export type RootState = ReturnType<() => State>
 
 export enum Mutations {
 	SET_CURRENT_CHALLENGE_INDEX = 'SET_CURRENT_CHALLENGE_INDEX',
+	SET_IS_LEVEL_UP_MODAL_OPEN = 'SET_IS_LEVEL_UP_MODAL_OPEN',
 	COMPLETE_CHALLENGE = 'COMPLETE_CHALLENGE',
 }
