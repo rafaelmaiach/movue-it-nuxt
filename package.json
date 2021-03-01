@@ -13,6 +13,7 @@
 	},
 	"dependencies": {
 		"@nuxt/typescript-runtime": "^2.0.1",
+		"@nuxtjs/composition-api": "^0.20.2",
 		"cookie-universal-nuxt": "^2.1.4",
 		"core-js": "^3.8.3",
 		"nuxt": "^2.14.12"
