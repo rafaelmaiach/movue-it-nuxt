@@ -10,7 +10,7 @@
 				disabled
 				class="button completed"
 			>
-				<span>Cycle completed</span>
+				Cycle completed
 			</button>
 			<button
 				v-else-if="isCountdownActive"
@@ -18,7 +18,7 @@
 				class="button abandon"
 				@click="setCountdownState(false)"
 			>
-				<span>Abandon cycle</span>
+				Abandon cycle
 			</button>
 			<button
 				v-else
@@ -26,7 +26,7 @@
 				class="button start"
 				@click="setCountdownState(true)"
 			>
-				<span>Start a cycle</span>
+				Start a cycle
 			</button>
 		</div>
 		<Card id="card" class="w-full lg:w-1/2" />
@@ -34,11 +34,11 @@
 </template>
 
 <script lang="ts">
-	import Vue from 'vue';
+	import { defineComponent, nextTick } from '@nuxtjs/composition-api';
 
-	import { mapState, mapGetters, mapMutations } from 'vuex';
-	import { Mutations as ChallengesMT } from '~/store/Challenges/types';
-	import { Mutations as CountdownMT } from '~/store/Countdown/types';
+	import useCountdown from '~/composables/store/useCountdown';
+	import useChallenges from '~/composables/store/useChallenges';
+
 	import { scrollToElement, getRandomNumber } from '~/utils';
 
 	import CompletedChallenges from '~/components/atom/CompletedChallenges.vue';
@@ -50,7 +50,7 @@
 		title: string;
 	}
 
-	export default Vue.extend({
+	export default defineComponent({
 		head (): Head {
 			return {
 				title: 'Home | move.it',
@@ -62,32 +62,29 @@
 			Profile,
 			Card,
 		},
-		mounted () {
-			if ('Notification' in window) {
-				Notification.requestPermission();
-			}
-		},
-		computed: {
-			...mapState('Countdown', {
-				hasCountdownCompleted: 'hasCompleted',
-				isCountdownActive: 'isActive',
-			}),
-			...mapGetters('Challenges', ['challengesLength']),
-		},
-		methods: {
-			...mapMutations({
-				setCountdownHasCompleted: `Countdown/${CountdownMT.SET_HAS_COMPLETED}`,
-				setCountdownIsActive: `Countdown/${CountdownMT.SET_IS_ACTIVE}`,
-				setCurrentChallengeIndex: `Challenges/${ChallengesMT.SET_CURRENT_CHALLENGE_INDEX}`,
-			}),
-			setCountdownState (flag: boolean) {
-				this.setCountdownHasCompleted(false);
-				this.setCountdownIsActive(flag);
-			},
-			getNewChallenge () {
-				const index = getRandomNumber(0, this.challengesLength);
-				this.setCountdownHasCompleted(true);
-				this.setCurrentChallengeIndex(index);
+		setup () {
+			const {
+				hasCompleted: hasCountdownCompleted,
+				isActive: isCountdownActive,
+				setHasCompleted: setCountdownHasCompleted,
+				setIsActive: setCountdownIsActive,
+				resetTime,
+			} = useCountdown();
+
+			const { challengesLength, setCurrentChallengeIndex } = useChallenges();
+
+			const setCountdownState = (flag: boolean) => {
+				setCountdownHasCompleted(false);
+				setCountdownIsActive(flag);
+			};
+
+			const getNewChallenge = () => {
+				setCountdownIsActive(false);
+				resetTime();
+
+				const index = getRandomNumber(0, challengesLength.value);
+				setCountdownHasCompleted(true);
+				setCurrentChallengeIndex(index);
 
 				if (Notification.permission === 'granted') {
 					new Audio('/notification.mp3').play();
@@ -97,10 +94,21 @@
 					});
 				}
 
-				this.$nextTick(() => {
+				nextTick(() => {
 					scrollToElement('#challenge');
 				});
-			},
+			};
+
+			if (process.browser && 'Notification' in window) {
+				Notification.requestPermission();
+			}
+
+			return {
+				hasCountdownCompleted,
+				isCountdownActive,
+				setCountdownState,
+				getNewChallenge,
+			};
 		},
 	});
 </script>

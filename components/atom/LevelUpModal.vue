@@ -3,7 +3,7 @@
 		<div
 			v-if="isLevelUpModalOpen"
 			class="overlay flex justify-center items-center bg-gray-line fixed inset-0"
-			@click="setModalState(false)"
+			@click="setIsLevelUpModalOpen(false)"
 		>
 			<div
 				class="bg-white w-full max-w-md p-10 rounded-md shadow-lg text-center relative"
@@ -23,7 +23,7 @@
 				<button
 					type="button"
 					class="absolute right-2 top-2 bg-transparent border-0"
-					@click="setModalState(false)"
+					@click="setIsLevelUpModalOpen(false)"
 				>
 					<img src="/icons/close.svg" alt="Close Modal">
 				</button>
@@ -33,15 +33,19 @@
 </template>
 
 <script lang="ts">
-	import Vue from 'vue';
-	import { mapState, mapMutations } from 'vuex';
-	import { Mutations } from '~/store/Challenges/types';
+	import { defineComponent } from '@nuxtjs/composition-api';
+import useChallenges from '~/composables/store/useChallenges';
 
-	export default Vue.extend({
-		computed: mapState('Challenges', ['level', 'isLevelUpModalOpen']),
-		methods: mapMutations('Challenges', {
-			setModalState: Mutations.SET_IS_LEVEL_UP_MODAL_OPEN,
-		}),
+	export default defineComponent({
+		setup () {
+			const { level, isLevelUpModalOpen, setIsLevelUpModalOpen } = useChallenges();
+
+			return {
+				level,
+				isLevelUpModalOpen,
+				setIsLevelUpModalOpen,
+			};
+		},
 	});
 </script>
 

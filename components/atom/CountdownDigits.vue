@@ -11,21 +11,23 @@
 </template>
 
 <script lang="ts">
-	import Vue from 'vue';
+	import { defineComponent, computed } from '@nuxtjs/composition-api';
+
 	import { splitValue } from '~/utils';
 
-	interface Props {
-		digits: number;
-	}
-
-	export default Vue.extend<unknown, unknown, any, Props>({
+	export default defineComponent({
 		props: {
-			digits: { type: Number, required: true },
-		},
-		computed: {
-			splittedDigits (): string[] {
-				return splitValue(this.digits);
+			digits: {
+				type: Number,
+				required: true,
 			},
+		},
+		setup (props) {
+			const splittedDigits = computed(() => splitValue(props.digits));
+
+			return {
+				splittedDigits,
+			};
 		},
 	});
 </script>

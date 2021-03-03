@@ -12,10 +12,17 @@
 </template>
 
 <script lang="ts">
-	import Vue from 'vue';
-	import { mapState } from 'vuex';
+	import { defineComponent } from '@nuxtjs/composition-api';
 
-	export default Vue.extend({
-		computed: mapState('Challenges', ['level']),
+	import useChallenges from '~/composables/store/useChallenges';
+
+	export default defineComponent({
+		setup () {
+			const { level } = useChallenges();
+
+			return {
+				level,
+			};
+		},
 	});
 </script>

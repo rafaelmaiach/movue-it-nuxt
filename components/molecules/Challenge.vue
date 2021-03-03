@@ -26,46 +26,51 @@
 </template>
 
 <script lang="ts">
-	import Vue from 'vue';
-	import { mapState, mapMutations } from 'vuex';
+	import { defineComponent, useContext } from '@nuxtjs/composition-api';
 
-	import { Mutations as CountdownMT } from '~/store/Countdown/types';
-	import {
-		Challenge as ChallengeType,
-		Mutations as ChallengesMT,
-	} from '~/store/Challenges/types';
+	import useChallenges from '~/composables/store/useChallenges';
+	import useCountdown from '~/composables/store/useCountdown';
 
-	export default Vue.extend<unknown, any, unknown, ChallengeType>({
+	export default defineComponent({
 		props: {
 			type: { type: String, required: true },
 			description: { type: String, required: true },
 			amount: { type: Number, required: true },
 		},
-		computed: mapState('Challenges', ['level', 'xp', 'completedChallenges']),
-		methods: {
-			...mapMutations({
-				resetTime: `Countdown/${CountdownMT.RESET_TIME}`,
-				setIsActive: `Countdown/${CountdownMT.SET_IS_ACTIVE}`,
-				setHasCompleted: `Countdown/${CountdownMT.SET_HAS_COMPLETED}`,
-				setCurrentChallengeIndex: `Challenges/${ChallengesMT.SET_CURRENT_CHALLENGE_INDEX}`,
-				completeChallenge: `Challenges/${ChallengesMT.COMPLETE_CHALLENGE}`,
-			}),
-			resetChallenges () {
-				this.resetTime();
-				this.setIsActive(false);
-				this.setHasCompleted(false);
-				this.setCurrentChallengeIndex(null);
-			},
-			challengeSucceeded () {
-				this.resetChallenges();
-				this.completeChallenge(this.amount);
+		setup (props) {
+			const { app } = useContext();
+			const { resetTime, setIsActive, setHasCompleted } = useCountdown();
 
-				this.$cookiz.set('movueit', {
-					level: this.level,
-					xp: this.xp,
-					completedChallenges: this.completedChallenges,
+			const {
+				level,
+				xp,
+				completedChallenges,
+				setCurrentChallengeIndex,
+				completeChallenge,
+			} = useChallenges();
+
+			const resetChallenges = () => {
+				resetTime();
+				setIsActive(false);
+				setHasCompleted(false);
+				setCurrentChallengeIndex(null);
+			};
+
+			const challengeSucceeded = () => {
+				resetChallenges();
+				completeChallenge(props.amount);
+
+				app.$cookiz.set('movueit', {
+					level: level.value,
+					xp: xp.value,
+					completedChallenges: completedChallenges.value,
 				});
-			},
+			};
+
+			return {
+				resetChallenges,
+				challengeSucceeded,
+			};
 		},
 	});
 </script>

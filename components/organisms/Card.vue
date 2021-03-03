@@ -7,19 +7,26 @@
 </template>
 
 <script lang="ts">
-	import Vue from 'vue';
-	import { mapGetters } from 'vuex';
+	import { defineComponent } from '@nuxtjs/composition-api';
+
+	import useChallenges from '~/composables/store/useChallenges';
 
 	import LevelUpModal from '~/components/atom/LevelUpModal.vue';
 	import StartCycle from '~/components/molecules/StartCycle.vue';
 	import Challenge from '~/components/molecules/Challenge.vue';
 
-	export default Vue.extend({
+	export default defineComponent({
 		components: {
 			StartCycle,
 			Challenge,
 			LevelUpModal,
 		},
-		computed: mapGetters('Challenges', ['currentChallenge']),
+		setup () {
+			const { currentChallenge } = useChallenges();
+
+			return {
+				currentChallenge,
+			};
+		},
 	});
 </script>

@@ -10,10 +10,15 @@
 </template>
 
 <script lang="ts">
-	import Vue from 'vue';
-	import { mapState } from 'vuex';
+	import { defineComponent } from '@nuxtjs/composition-api';
 
-	export default Vue.extend({
-		computed: mapState('Challenges', ['completedChallenges']),
+	import useChallenges from '~/composables/store/useChallenges';
+
+	export default defineComponent({
+		setup () {
+			const { completedChallenges } = useChallenges();
+
+			return { completedChallenges };
+		},
 	});
 </script>
