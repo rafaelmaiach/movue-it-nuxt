@@ -1,6 +1,5 @@
-import { MutationTree } from 'vuex';
 
-import { State, Getters, RootState, Mutations } from './types';
+import { State, Getters, Mutations, MutationsInterface } from './types';
 import allChallenges from './data';
 
 export const state = (): State => ({
@@ -17,20 +16,20 @@ export const state = (): State => ({
 });
 
 export const getters: Getters = {
-	challengesLength: ({ allChallenges }: State) => allChallenges.length,
-	currentXpPercentage: ({ xp }: State) => Number(((xp.current / xp.end) * 100).toFixed(2)),
-	currentChallenge: ({ allChallenges, currentChallengeIndex }: State) =>
+	challengesLength: ({ allChallenges }) => allChallenges.length,
+	currentXpPercentage: ({ xp }) => Number(((xp.current / xp.end) * 100).toFixed(2)),
+	currentChallenge: ({ allChallenges, currentChallengeIndex }) =>
 		(typeof currentChallengeIndex === 'number') ? allChallenges[currentChallengeIndex] : null,
 };
 
-export const mutations: MutationTree<RootState> = {
-	[Mutations.SET_CURRENT_CHALLENGE_INDEX]: (state: State, index: number) => {
+export const mutations: MutationsInterface = {
+	[Mutations.SET_CURRENT_CHALLENGE_INDEX] (state, index) {
 		state.currentChallengeIndex = index;
 	},
-	[Mutations.SET_IS_LEVEL_UP_MODAL_OPEN]: (state: State, flag: boolean) => {
+	[Mutations.SET_IS_LEVEL_UP_MODAL_OPEN] (state, flag) {
 		state.isLevelUpModalOpen = flag;
 	},
-	[Mutations.COMPLETE_CHALLENGE]: (state: State, xpAmount: number) => {
+	[Mutations.COMPLETE_CHALLENGE] (state, xpAmount) {
 		const { current, end } = state.xp;
 		const shouldLevelUp = (xpAmount + current) >= end;
 
