@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components:molecules:Countdown Snapshots should match snapshot and pass correct props 1`] = `
+"<div class=\\"flex justify-center items-center mt-8 lg:mt-14 text-9xl text-title font-rajdhani\\">
+  <countdowndigits-stub digits=\\"25\\"></countdowndigits-stub> <span class=\\"bg-background px-2\\">:</span>
+  <countdowndigits-stub digits=\\"0\\"></countdowndigits-stub>
+</div>"
+`;
