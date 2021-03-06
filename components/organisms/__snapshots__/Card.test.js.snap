@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components:organisms:Card Snapshots should render challenge and modal and pass the correct props to challenge 1`] = `
+"<div class=\\"bg-white rounded-md flex flex-1 w-full mt-8 lg:mt-0 shadow-sm\\">
+  <challenge-stub type=\\"type\\" description=\\"description\\" amount=\\"10\\"></challenge-stub>
+  <levelupmodal-stub></levelupmodal-stub>
+</div>"
+`;
+
+exports[`Components:organisms:Card Snapshots should render start cycle and modal when there is no challenge for an index 1`] = `
+"<div class=\\"bg-white rounded-md flex flex-1 w-full mt-8 lg:mt-0 shadow-sm\\">
+  <startcycle-stub></startcycle-stub>
+  <levelupmodal-stub></levelupmodal-stub>
+</div>"
+`;
+
+exports[`Components:organisms:Card Snapshots should render start cycle button and modal 1`] = `
+"<div class=\\"bg-white rounded-md flex flex-1 w-full mt-8 lg:mt-0 shadow-sm\\">
+  <startcycle-stub></startcycle-stub>
+  <levelupmodal-stub></levelupmodal-stub>
+</div>"
+`;
