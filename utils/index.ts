@@ -12,3 +12,7 @@ export const scrollToElement = (selector: string) => {
 export const getRandomNumber = (min: number, max: number) => {
 	return Math.floor(Math.random() * (max - min) + min);
 };
+
+export const playAudio = (path: string) => new Audio(path).play();
+
+export const sendNotification = (title: string, options: object) => new Notification(title, options);

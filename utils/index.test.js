@@ -1,4 +1,10 @@
-import { splitValue, scrollToElement, getRandomNumber } from './index';
+import {
+	splitValue,
+	scrollToElement,
+	getRandomNumber,
+	playAudio,
+	sendNotification,
+} from './index';
 
 describe('Utils:index', () => {
 	it('should pad the value with leading zeros and split the result', () => {
@@ -23,9 +29,9 @@ describe('Utils:index', () => {
 		const scrollIntoView = jest.fn();
 
 		const querySelector = jest.spyOn(document, 'querySelector');
-		querySelector.mockImplementationOnce((): any => ({	scrollIntoView }));
+		querySelector.mockImplementationOnce(() => ({	scrollIntoView }));
 
-		window.matchMedia = jest.fn().mockImplementationOnce((): any => ({ matches: true }));
+		window.matchMedia = jest.fn().mockImplementationOnce(() => ({ matches: true }));
 
 		scrollToElement('#id');
 
@@ -38,9 +44,9 @@ describe('Utils:index', () => {
 		const scrollIntoView = jest.fn();
 
 		const querySelector = jest.spyOn(document, 'querySelector');
-		querySelector.mockImplementationOnce((): any => {});
+		querySelector.mockImplementationOnce(() => {});
 
-		window.matchMedia = jest.fn().mockImplementationOnce((): any => ({ matches: true }));
+		window.matchMedia = jest.fn().mockImplementationOnce(() => ({ matches: true }));
 
 		scrollToElement('#id');
 
@@ -53,9 +59,9 @@ describe('Utils:index', () => {
 		const scrollIntoView = jest.fn();
 
 		const querySelector = jest.spyOn(document, 'querySelector');
-		querySelector.mockImplementationOnce((): any => true);
+		querySelector.mockImplementationOnce(() => true);
 
-		window.matchMedia = jest.fn().mockImplementationOnce((): any => ({ matches: false }));
+		window.matchMedia = jest.fn().mockImplementationOnce(() => ({ matches: false }));
 
 		scrollToElement('#id');
 
@@ -86,5 +92,25 @@ describe('Utils:index', () => {
 
 		const result = getRandomNumber(1, 10);
 		expect(result).toBe(5);
+	});
+
+	it('should create Audio element and play it', () => {
+		const play = jest.fn();
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		global.Audio = jest.fn(path => ({
+			play,
+		}));
+
+		playAudio('path');
+		expect(global.Audio).toHaveBeenCalledWith('path');
+		expect(play).toHaveBeenCalled();
+	});
+
+	it('should create and send a Notification', () => {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		global.Notification = jest.fn((title, options) => {});
+
+		sendNotification('title', { body: 'body' });
+		expect(global.Notification).toHaveBeenCalledWith('title', { body: 'body' });
 	});
 });
