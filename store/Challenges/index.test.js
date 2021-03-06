@@ -1,9 +1,9 @@
-import { State, Mutations } from './types';
+import { Mutations } from './types';
 import allChallenges from './data';
 import { state as originalState, getters, mutations } from './index';
 
 describe('Store:Challenges:index', () => {
-	let state: State;
+	let state;
 
 	beforeEach(() => {
 		state = {

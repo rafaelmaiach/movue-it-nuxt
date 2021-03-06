@@ -1,8 +1,8 @@
-import { State, Mutations } from './types';
+import { Mutations } from './types';
 import { state as originalState, getters, mutations } from './index';
 
 describe('Store:Countdown:index', () => {
-	let state: State;
+	let state;
 
 	beforeEach(() => {
 		state = {
