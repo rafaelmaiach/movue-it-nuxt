@@ -39,7 +39,12 @@
 	import { mapState, mapGetters, mapMutations } from 'vuex';
 	import { Mutations as ChallengesMT } from '~/store/Challenges/types';
 	import { Mutations as CountdownMT } from '~/store/Countdown/types';
-	import { scrollToElement, getRandomNumber } from '~/utils';
+	import {
+		scrollToElement,
+		getRandomNumber,
+		playAudio,
+		sendNotification,
+	} from '~/utils';
 
 	import CompletedChallenges from '~/components/atom/CompletedChallenges.vue';
 	import Countdown from '~/components/molecules/Countdown.vue';
@@ -89,11 +94,11 @@
 				this.setCountdownHasCompleted(true);
 				this.setCurrentChallengeIndex(index);
 
-				if (Notification.permission === 'granted') {
-					new Audio('/notification.mp3').play();
-					new Notification('New Challenge!', {
-							body: 'A new challenge has started! Go complete it!',
-							icon: '/favicon.png',
+				if (Notification?.permission === 'granted') {
+					playAudio('/notification.mp3');
+					sendNotification('New Challenge!', {
+						body: 'A new challenge has started! Go complete it!',
+						icon: '/favicon.png',
 					});
 				}
 
