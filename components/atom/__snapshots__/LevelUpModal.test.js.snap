@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components:atom:LevelUpModal Snapshots should match snapshot when modal is closed 1`] = `
+"<transition-stub name=\\"slide-fade\\">
+  <!---->
+</transition-stub>"
+`;
+
+exports[`Components:atom:LevelUpModal Snapshots should match snapshot when modal is opened 1`] = `
+"<transition-stub name=\\"slide-fade\\">
+  <div class=\\"overlay flex justify-center items-center bg-gray-line fixed inset-0\\">
+    <div class=\\"bg-white w-full max-w-md p-10 rounded-md shadow-lg text-center relative\\">
+      <header class=\\"text-9xl font-semibold text-blue bg-contain\\">
+        1
+      </header> <strong class=\\"text-2xl text-text mt-1\\">
+				Congratulations!
+			</strong>
+      <p>
+        You reached a new level!
+      </p> <button type=\\"button\\" class=\\"absolute right-2 top-2 bg-transparent border-0\\"><img src=\\"/icons/close.svg\\" alt=\\"Close Modal\\"></button>
+    </div>
+  </div>
+</transition-stub>"
+`;
