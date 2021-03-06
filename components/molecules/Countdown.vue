@@ -47,7 +47,7 @@ export default Vue.extend({
 		time (newValue: number) {
 			if (newValue > 0) {
 				this.runCountdown(true);
-			} else if (newValue <= 0) {
+			} else {
 				this.$emit('completed');
 			}
 		},

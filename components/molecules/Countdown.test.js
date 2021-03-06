@@ -83,12 +83,23 @@ describe('Components:molecules:Countdown', () => {
 			expect(wrapper.vm.seconds).toBe(59);
 		});
 
-		it('should not run countdown and emit completed event', async () => {
+		it('should not run countdown and emit completed event for time = 0', async () => {
 			const config = buildWrapper({ isActive: true });
 			const wrapper = shallowMount(Countdown, config);
 			const runCountdown = jest.spyOn(wrapper.vm, 'runCountdown');
 
 			await config.store.commit(`Countdown/${Mutations.SET_TIME}`, 0);
+
+			expect(runCountdown).not.toHaveBeenCalled();
+			expect(wrapper.emitted().completed).toBeTruthy();
+		});
+
+		it('should not run countdown and emit completed event for time < 0', async () => {
+			const config = buildWrapper({ isActive: true });
+			const wrapper = shallowMount(Countdown, config);
+			const runCountdown = jest.spyOn(wrapper.vm, 'runCountdown');
+
+			await config.store.commit(`Countdown/${Mutations.SET_TIME}`, -1);
 
 			expect(runCountdown).not.toHaveBeenCalled();
 			expect(wrapper.emitted().completed).toBeTruthy();
