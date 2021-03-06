@@ -17,13 +17,13 @@
 </template>
 
 <script lang="ts">
-	import Vue from 'vue';
-	import { mapState, mapGetters } from 'vuex';
+import Vue from 'vue';
+import { mapState, mapGetters } from 'vuex';
 
-	export default Vue.extend({
-		computed: {
-			...mapState('Challenges', ['xp']),
-			...mapGetters('Challenges', ['currentXpPercentage']),
-		},
-	});
+export default Vue.extend({
+	computed: {
+		...mapState('Challenges', ['xp']),
+		...mapGetters('Challenges', ['currentXpPercentage']),
+	},
+});
 </script>

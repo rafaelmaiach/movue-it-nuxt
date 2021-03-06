@@ -15,7 +15,11 @@ module.exports = {
 		'comma-dangle': ['error', 'always-multiline'],
 		'import/first': 'off',
 		'import/order': 'off',
-		indent: ['error', 'tab'],
+		indent: 'off',
+		'@typescript-eslint/indent': [
+			'error',
+			'tab',
+		],
 		'no-new': 'off',
 		'no-tabs': 'off',
 		semi: ['error', 'always'],

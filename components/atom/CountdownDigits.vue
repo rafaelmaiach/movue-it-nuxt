@@ -11,21 +11,21 @@
 </template>
 
 <script lang="ts">
-	import Vue from 'vue';
-	import { splitValue } from '~/utils';
+import Vue from 'vue';
+import { splitValue } from '~/utils';
 
-	interface Props {
-		digits: number;
-	}
+interface Props {
+	digits: number;
+}
 
-	export default Vue.extend<unknown, unknown, any, Props>({
-		props: {
-			digits: { type: Number, required: true },
+export default Vue.extend<unknown, unknown, any, Props>({
+	props: {
+		digits: { type: Number, required: true },
+	},
+	computed: {
+		splittedDigits (): string[] {
+			return splitValue(this.digits);
 		},
-		computed: {
-			splittedDigits (): string[] {
-				return splitValue(this.digits);
-			},
-		},
-	});
+	},
+});
 </script>

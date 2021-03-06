@@ -7,50 +7,50 @@
 </template>
 
 <script lang="ts">
-	import Vue from 'vue';
-	import { mapState, mapGetters, mapMutations } from 'vuex';
-	import { Mutations } from '~/store/Countdown/types';
+import Vue from 'vue';
+import { mapState, mapGetters, mapMutations } from 'vuex';
+import { Mutations } from '~/store/Countdown/types';
 
-	import CountdownDigits from '~/components/atom/CountdownDigits.vue';
+import CountdownDigits from '~/components/atom/CountdownDigits.vue';
 
-	let TIMEOUT_REFERENCE: ReturnType<typeof setTimeout>;
+let TIMEOUT_REFERENCE: ReturnType<typeof setTimeout>;
 
-	export default Vue.extend({
-		components: { CountdownDigits },
-		computed: {
-			...mapState('Countdown', ['time', 'isActive']),
-			...mapGetters('Countdown', ['minutes', 'seconds']),
+export default Vue.extend({
+	components: { CountdownDigits },
+	computed: {
+		...mapState('Countdown', ['time', 'isActive']),
+		...mapGetters('Countdown', ['minutes', 'seconds']),
+	},
+	methods: {
+		...mapMutations('Countdown', {
+			setTime: Mutations.SET_TIME,
+			resetTime: Mutations.RESET_TIME,
+		}),
+		runCountdown (flag: boolean) {
+			if (this.isActive && flag) {
+				TIMEOUT_REFERENCE = setTimeout(() => {
+					this.setTime(this.time - 1);
+				}, 1000);
+			} else {
+				clearTimeout(TIMEOUT_REFERENCE);
+			}
 		},
-		methods: {
-			...mapMutations('Countdown', {
-				setTime: Mutations.SET_TIME,
-				resetTime: Mutations.RESET_TIME,
-			}),
-			runCountdown (flag: boolean) {
-				if (this.isActive && flag) {
-					TIMEOUT_REFERENCE = setTimeout(() => {
-						this.setTime(this.time - 1);
-					}, 1000);
-				} else {
-					clearTimeout(TIMEOUT_REFERENCE);
-				}
-			},
-		},
-		watch: {
-			isActive (newValue: boolean) {
-				this.runCountdown(newValue);
+	},
+	watch: {
+		isActive (newValue: boolean) {
+			this.runCountdown(newValue);
 
-				if (!newValue) {
-					this.resetTime();
-				}
-			},
-			time (newValue: number) {
-				if (newValue > 0) {
-					this.runCountdown(true);
-				} else if (newValue === 0) {
-					this.$emit('completed');
-				}
-			},
+			if (!newValue) {
+				this.resetTime();
+			}
 		},
-	});
+		time (newValue: number) {
+			if (newValue > 0) {
+				this.runCountdown(true);
+			} else if (newValue === 0) {
+				this.$emit('completed');
+			}
+		},
+	},
+});
 </script>

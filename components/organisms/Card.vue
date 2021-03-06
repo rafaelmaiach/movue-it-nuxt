@@ -7,19 +7,19 @@
 </template>
 
 <script lang="ts">
-	import Vue from 'vue';
-	import { mapGetters } from 'vuex';
+import Vue from 'vue';
+import { mapGetters } from 'vuex';
 
-	import LevelUpModal from '~/components/atom/LevelUpModal.vue';
-	import StartCycle from '~/components/molecules/StartCycle.vue';
-	import Challenge from '~/components/molecules/Challenge.vue';
+import LevelUpModal from '~/components/atom/LevelUpModal.vue';
+import StartCycle from '~/components/molecules/StartCycle.vue';
+import Challenge from '~/components/molecules/Challenge.vue';
 
-	export default Vue.extend({
-		components: {
-			StartCycle,
-			Challenge,
-			LevelUpModal,
-		},
-		computed: mapGetters('Challenges', ['currentChallenge']),
-	});
+export default Vue.extend({
+	components: {
+		StartCycle,
+		Challenge,
+		LevelUpModal,
+	},
+	computed: mapGetters('Challenges', ['currentChallenge']),
+});
 </script>

@@ -33,16 +33,16 @@
 </template>
 
 <script lang="ts">
-	import Vue from 'vue';
-	import { mapState, mapMutations } from 'vuex';
-	import { Mutations } from '~/store/Challenges/types';
+import Vue from 'vue';
+import { mapState, mapMutations } from 'vuex';
+import { Mutations } from '~/store/Challenges/types';
 
-	export default Vue.extend({
-		computed: mapState('Challenges', ['level', 'isLevelUpModalOpen']),
-		methods: mapMutations('Challenges', {
-			setModalState: Mutations.SET_IS_LEVEL_UP_MODAL_OPEN,
-		}),
-	});
+export default Vue.extend({
+	computed: mapState('Challenges', ['level', 'isLevelUpModalOpen']),
+	methods: mapMutations('Challenges', {
+		setModalState: Mutations.SET_IS_LEVEL_UP_MODAL_OPEN,
+	}),
+});
 </script>
 
 <style scoped>
