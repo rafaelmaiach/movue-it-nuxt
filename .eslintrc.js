@@ -13,6 +13,8 @@ module.exports = {
 	// add your custom rules here
 	rules: {
 		'comma-dangle': ['error', 'always-multiline'],
+		'import/first': 'off',
+		'import/order': 'off',
 		indent: ['error', 'tab'],
 		'no-new': 'off',
 		'no-tabs': 'off',
