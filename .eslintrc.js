@@ -26,12 +26,4 @@ module.exports = {
 		'vue/html-indent': ['error', 'tab'],
 		'vue/order-in-components': 'off',
 	},
-	overrides: [
-		{
-			files: ['*.vue'],
-			rules: {
-				indent: 'off',
-			},
-		},
-	],
 };
