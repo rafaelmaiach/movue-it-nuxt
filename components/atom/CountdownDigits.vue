@@ -14,11 +14,7 @@
 import Vue from 'vue';
 import { splitValue } from '~/utils';
 
-interface Props {
-	digits: number;
-}
-
-export default Vue.extend<unknown, unknown, any, Props>({
+export default Vue.extend({
 	props: {
 		digits: { type: Number, required: true },
 	},
