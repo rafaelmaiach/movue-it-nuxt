@@ -1,7 +1,10 @@
 import { createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 
-import * as Challenges from '~/store/Challenges';
+import * as ChallengesState from '~/store/Challenges';
+import ChallengesGetters from '~/store/Challenges/getters';
+import ChallengesMutations from '~/store/Challenges/mutations';
+
 import * as Countdown from '~/store/Countdown';
 
 export const setupLocalVueStore = () => {
@@ -19,15 +22,15 @@ export const setupLocalVueStore = () => {
 			Challenges: {
 				namespaced: true,
 				state: {
-					...Challenges.state(),
+					...ChallengesState.state(),
 					allChallenges: [{
 						type: 'type',
 						description: 'description',
 						amount: 10,
 					}],
 				},
-				getters: Challenges.getters,
-				mutations: Challenges.mutations,
+				getters: ChallengesGetters,
+				mutations: ChallengesMutations,
 			},
 		},
 	});
