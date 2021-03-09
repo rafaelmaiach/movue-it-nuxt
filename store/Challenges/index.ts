@@ -16,10 +16,15 @@ export const state = (): State => ({
 });
 
 export const getters: Getters = {
-	challengesLength: ({ allChallenges }) => allChallenges.length,
-	currentXpPercentage: ({ xp }) => Number(((xp.current / xp.end) * 100).toFixed(2)),
-	currentChallenge: ({ allChallenges, currentChallengeIndex }) =>
-		(typeof currentChallengeIndex === 'number') ? allChallenges[currentChallengeIndex] : null,
+	challengesLength: state => state.allChallenges.length,
+	currentXpPercentage: (state) => {
+		const percentage = (state.xp.current / state.xp.end) * 100;
+		return Number(percentage.toFixed(2));
+	},
+	currentChallenge: state =>
+		(typeof state.currentChallengeIndex === 'number')
+			? state.allChallenges[state.currentChallengeIndex]
+			: null,
 };
 
 export const mutations: MutationsInterface = {
@@ -48,12 +53,13 @@ export const mutations: MutationsInterface = {
 			};
 
 			state.isLevelUpModalOpen = true;
-		} else {
-			state.xp = {
-				...state.xp,
-				current: current + xpAmount,
-			};
+			return;
 		}
+
+		state.xp = {
+			...state.xp,
+			current: current + xpAmount,
+		};
 	},
 	[Mutations.SAVE_COOKIE_DATA] (state, cookie) {
 		state.level = cookie.level;

@@ -1,5 +1,4 @@
-import { MutationTree } from 'vuex';
-import { State, Getters, RootState, Mutations } from './types';
+import { State, Getters, Mutations, MutationsInterface } from './types';
 
 const MINUTES = 25;
 
@@ -10,21 +9,21 @@ export const state = (): State => ({
 });
 
 export const getters: Getters = {
-	minutes: (state: State) => Math.floor(state.time / 60),
-	seconds: (state: State) => state.time % 60,
+	minutes: state => Math.floor(state.time / 60),
+	seconds: state => state.time % 60,
 };
 
-export const mutations: MutationTree<RootState> = {
-	[Mutations.SET_TIME] (state: State, newTime: number) {
+export const mutations: MutationsInterface = {
+	[Mutations.SET_TIME] (state, newTime) {
 		state.time = newTime;
 	},
-	[Mutations.RESET_TIME] (state: State) {
+	[Mutations.RESET_TIME] (state) {
 		state.time = MINUTES * 60;
 	},
-	[Mutations.SET_IS_ACTIVE] (state: State, isActive: boolean) {
+	[Mutations.SET_IS_ACTIVE] (state, isActive) {
 		state.isActive = isActive;
 	},
-	[Mutations.SET_HAS_COMPLETED] (state: State, hasCompleted: boolean) {
+	[Mutations.SET_HAS_COMPLETED] (state, hasCompleted) {
 		state.hasCompleted = hasCompleted;
 	},
 };
