@@ -1,5 +1,5 @@
+import allChallenges from '~/assets/challenges/data';
 import { Mutations } from './types';
-import allChallenges from './data';
 import { state as originalState, getters, mutations } from './index';
 
 describe('Store:Challenges:index', () => {
