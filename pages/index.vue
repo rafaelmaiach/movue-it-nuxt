@@ -46,7 +46,7 @@ import {
 	sendNotification,
 } from '~/utils';
 
-import CompletedChallenges from '~/components/atom/CompletedChallenges.vue';
+import CompletedChallenges from '~/components/atoms/CompletedChallenges.vue';
 import Countdown from '~/components/molecules/Countdown.vue';
 import Profile from '~/components/molecules/Profile.vue';
 import Card from '~/components/organisms/Card.vue';

@@ -4,7 +4,7 @@ import { Mutations } from '~/store/Countdown/types';
 import { setupLocalVueStore } from '~/store/helper';
 
 import Countdown from './Countdown.vue';
-import CountdownDigits from '~/components/atom/CountdownDigits.vue';
+import CountdownDigits from '~/components/atoms/CountdownDigits.vue';
 
 describe('Components:molecules:Countdown', () => {
 	const { localVue, configureStore } = setupLocalVueStore();

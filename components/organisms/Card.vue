@@ -10,8 +10,8 @@
 import Vue from 'vue';
 import { mapGetters } from 'vuex';
 
-import LevelUpModal from '~/components/atom/LevelUpModal.vue';
-import StartCycle from '~/components/molecules/StartCycle.vue';
+import LevelUpModal from '~/components/atoms/LevelUpModal.vue';
+import StartCycle from '~/components/atoms/StartCycle.vue';
 import Challenge from '~/components/molecules/Challenge.vue';
 
 export default Vue.extend({

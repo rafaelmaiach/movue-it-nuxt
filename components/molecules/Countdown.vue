@@ -11,7 +11,7 @@ import Vue from 'vue';
 import { mapState, mapGetters, mapMutations } from 'vuex';
 import { Mutations } from '~/store/Countdown/types';
 
-import CountdownDigits from '~/components/atom/CountdownDigits.vue';
+import CountdownDigits from '~/components/atoms/CountdownDigits.vue';
 
 let TIMEOUT_REFERENCE: ReturnType<typeof setTimeout>;
 
