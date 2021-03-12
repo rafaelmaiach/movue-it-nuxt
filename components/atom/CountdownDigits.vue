@@ -1,5 +1,5 @@
 <template>
-	<p class="number w-1/2 flex gap-x-1">
+	<p class="w-1/2 flex gap-x-1">
 		<span
 			v-for="(digit, index) in splittedDigits"
 			:key="index"

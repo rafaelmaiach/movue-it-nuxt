@@ -1,9 +1,9 @@
 <template>
 	<section class="flex flex-col lg:flex-row flex-1 lg:flex-none lg:mt-16 sm:gap-x-10 md:gap-x-20">
 		<div class="flex flex-col w-full lg:w-1/2">
-			<Profile id="profile" />
-			<CompletedChallenges id="challenges" />
-			<Countdown id="countdown" @completed="getNewChallenge" />
+			<Profile />
+			<CompletedChallenges />
+			<Countdown @completed="getNewChallenge" />
 			<button
 				v-if="hasCountdownCompleted"
 				id="button"
@@ -29,7 +29,7 @@
 				<span>Start a cycle</span>
 			</button>
 		</div>
-		<Card id="card" class="w-full lg:w-1/2" />
+		<Card class="w-full lg:w-1/2" />
 	</section>
 </template>
 

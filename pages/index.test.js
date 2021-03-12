@@ -109,10 +109,10 @@ describe('Pages:index', () => {
 			const config = buildWrapper();
 			const wrapper = mount(Index, config);
 
-			const button = wrapper.find('#button');
+			const button = wrapper.find('button');
 			await button.trigger('click');
 
-			const newButton = wrapper.find('#button');
+			const newButton = wrapper.find('button');
 			expect(newButton.text()).toBe('Abandon cycle');
 		});
 
@@ -120,10 +120,10 @@ describe('Pages:index', () => {
 			const config = buildWrapper({ isActive: true });
 			const wrapper = mount(Index, config);
 
-			const button = wrapper.find('#button');
+			const button = wrapper.find('button');
 			await button.trigger('click');
 
-			const newButton = wrapper.find('#button');
+			const newButton = wrapper.find('button');
 			expect(newButton.text()).toBe('Start a cycle');
 		});
 	});
@@ -145,7 +145,7 @@ describe('Pages:index', () => {
 			const countdown = wrapper.findComponent(Countdown);
 			await countdown.vm.$emit('completed');
 
-			const button = wrapper.find('#button');
+			const button = wrapper.find('button');
 
 			expect(button.text()).toBe('Cycle completed');
 			expect(setCurrentChallengeIndex).toHaveBeenCalledWith(1);
@@ -168,7 +168,7 @@ describe('Pages:index', () => {
 			const countdown = wrapper.findComponent(Countdown);
 			await countdown.vm.$emit('completed');
 
-			const button = wrapper.find('#button');
+			const button = wrapper.find('button');
 
 			expect(button.text()).toBe('Cycle completed');
 			expect(setCurrentChallengeIndex).toHaveBeenCalledWith(1);

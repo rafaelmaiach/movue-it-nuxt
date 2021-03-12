@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Components:atom:CountdownDigits Snapshots should match snapshot 1`] = `
-"<p class=\\"number w-1/2 flex gap-x-1\\"><span class=\\"w-1/2 bg-white rounded-md flex items-center justify-center py-3\\">
+"<p class=\\"w-1/2 flex gap-x-1\\"><span class=\\"w-1/2 bg-white rounded-md flex items-center justify-center py-3\\">
 		1
 	</span><span class=\\"w-1/2 bg-white rounded-md flex items-center justify-center py-3\\">
 		0
