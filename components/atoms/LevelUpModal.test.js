@@ -4,7 +4,7 @@ import { setupLocalVueStore } from '~/store/helper';
 
 import LevelUpModal from './LevelUpModal.vue';
 
-describe('Components:atom:LevelUpModal', () => {
+describe('Components:atoms:LevelUpModal', () => {
 	const { localVue, configureStore } = setupLocalVueStore();
 	let mountConfig;
 

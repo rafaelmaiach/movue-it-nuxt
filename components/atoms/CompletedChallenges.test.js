@@ -4,7 +4,7 @@ import { setupLocalVueStore } from '~/store/helper';
 
 import CompletedChallenges from './CompletedChallenges.vue';
 
-describe('Components:atom:CompletedChallenges', () => {
+describe('Components:atoms:CompletedChallenges', () => {
 	const { localVue, configureStore } = setupLocalVueStore();
 	let mountConfig;
 

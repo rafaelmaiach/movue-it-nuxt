@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Components:atom:LevelUpModal Snapshots should match snapshot when modal is closed 1`] = `
+exports[`Components:atoms:LevelUpModal Snapshots should match snapshot when modal is closed 1`] = `
 "<transition-stub name=\\"slide-fade\\">
   <!---->
 </transition-stub>"
 `;
 
-exports[`Components:atom:LevelUpModal Snapshots should match snapshot when modal is opened 1`] = `
+exports[`Components:atoms:LevelUpModal Snapshots should match snapshot when modal is opened 1`] = `
 "<transition-stub name=\\"slide-fade\\">
   <div class=\\"overlay flex justify-center items-center bg-gray-line fixed inset-0\\">
     <div class=\\"bg-white w-full max-w-md p-10 rounded-md shadow-lg text-center relative\\">

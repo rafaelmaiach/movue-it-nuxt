@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Components:atom:ExperienceBar Snapshots should match snapshot 1`] = `
+exports[`Components:atoms:ExperienceBar Snapshots should match snapshot 1`] = `
 "<header class=\\"pb-10 flex items-center\\">
   <p class=\\"text-sm\\">
     0 xp

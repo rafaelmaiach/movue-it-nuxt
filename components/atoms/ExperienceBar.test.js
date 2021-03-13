@@ -4,7 +4,7 @@ import { setupLocalVueStore } from '~/store/helper';
 
 import ExperienceBar from './ExperienceBar.vue';
 
-describe('Components:atom:ExperienceBar', () => {
+describe('Components:atoms:ExperienceBar', () => {
 	const { localVue, configureStore } = setupLocalVueStore();
 
 	describe('Snapshots', () => {
