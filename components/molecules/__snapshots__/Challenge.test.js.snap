@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Components:molecules:Challenge Snapshots should match snapshot 1`] = `
-"<section id=\\"challenge\\" class=\\"flex flex-col flex-1 justify-center items-center py-6 px-10 md:px-16\\">
+"<section class=\\"flex flex-col flex-1 justify-center items-center py-6 px-10 md:px-16\\">
   <header class=\\"w-full pb-6 border-b-2 border-background\\">
     <h2 class=\\"text-xl text-blue font-semibold text-center\\">
       Win 10 xp
     </h2>
   </header>
-  <main class=\\"flex flex-col flex-1 justify-center items-center mt-6\\"><img src=\\"icons/type.svg\\" alt=\\"Body\\" style=\\"min-height: 70px;\\">
+  <main class=\\"flex flex-col flex-1 justify-center items-center mt-6\\"><img src=\\"icons/type.svg\\" alt=\\"type\\" style=\\"min-height: 70px;\\">
     <h1 class=\\"font-semibold text-3xl text-title mt-6 mb-2\\">
       Work out
     </h1>
@@ -15,9 +15,9 @@ exports[`Components:molecules:Challenge Snapshots should match snapshot 1`] = `
       description
     </p>
   </main>
-  <footer class=\\"flex w-full gap-x-2\\"><button kind=\\"challenge\\" class=\\"button failed\\">
+  <footer class=\\"flex w-full gap-x-2\\"><button class=\\"button failed\\">
       Failed
-    </button> <button kind=\\"challenge\\" class=\\"button succeeded\\">
+    </button> <button class=\\"button succeeded\\">
       Completed
     </button></footer>
 </section>"

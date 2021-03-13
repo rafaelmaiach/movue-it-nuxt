@@ -5,10 +5,7 @@
 			class="overlay flex justify-center items-center bg-gray-line fixed inset-0"
 			@click="setModalState(false)"
 		>
-			<div
-				class="bg-white w-full max-w-md p-10 rounded-md shadow-lg text-center relative"
-				@click.stop
-			>
+			<div class="bg-white w-full max-w-md p-10 rounded-md shadow-lg text-center relative" @click.stop>
 				<header class="text-9xl font-semibold text-blue bg-contain">
 					{{ level }}
 				</header>
@@ -16,6 +13,7 @@
 				<strong class="text-2xl text-text mt-1">
 					Congratulations!
 				</strong>
+
 				<p>
 					You reached a new level!
 				</p>
@@ -25,7 +23,7 @@
 					class="absolute right-2 top-2 bg-transparent border-0"
 					@click="setModalState(false)"
 				>
-					<img src="/icons/close.svg" alt="Close Modal">
+					<img src="icons/close.svg" alt="Close modal">
 				</button>
 			</div>
 		</div>
@@ -55,6 +53,6 @@ export default Vue.extend({
 	}
 
 	button {
-		font-size: 0px;
+		font-size: 0;
 	}
 </style>

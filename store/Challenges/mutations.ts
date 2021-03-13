@@ -9,14 +9,15 @@ export default {
 	},
 	[Mutations.COMPLETE_CHALLENGE] (state, xpAmount) {
 		const { current, end } = state.xp;
-		const shouldLevelUp = (xpAmount + current) >= end;
+		const currentTotalXP = current + xpAmount;
+		const shouldLevelUp = currentTotalXP >= end;
 
 		state.completedChallenges += 1;
 
 		if (shouldLevelUp) {
 			state.level += 1;
 
-			const remainingXp = (current + xpAmount) - end;
+			const remainingXp = currentTotalXP - end;
 			const experienceToNextLevel = Math.pow((state.level + 1) * 4, 2);
 
 			state.xp = {
@@ -31,7 +32,7 @@ export default {
 
 		state.xp = {
 			...state.xp,
-			current: current + xpAmount,
+			current: currentTotalXP,
 		};
 	},
 	[Mutations.SAVE_COOKIE_DATA] (state, cookie) {

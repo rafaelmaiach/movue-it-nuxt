@@ -78,7 +78,7 @@ describe('Pages:index', () => {
 			const config = buildWrapper();
 			const wrapper = mount(Index, config);
 
-			expect(wrapper.vm.$metaInfo.title).toBe('Home | move.it');
+			expect(wrapper.vm.$metaInfo.title).toBe('Home | movue.it');
 		});
 	});
 

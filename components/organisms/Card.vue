@@ -16,8 +16,8 @@ import Challenge from '~/components/molecules/Challenge.vue';
 
 export default Vue.extend({
 	components: {
-		StartCycle,
 		Challenge,
+		StartCycle,
 		LevelUpModal,
 	},
 	computed: mapGetters('Challenges', ['currentChallenge']),

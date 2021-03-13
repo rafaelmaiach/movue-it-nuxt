@@ -1,4 +1,5 @@
 import { MutationTree } from 'vuex';
+
 export interface State {
 	time: number;
 	isActive: boolean;
@@ -24,4 +25,4 @@ export interface MutationsInterface extends MutationTree<RootState> {
 	[Mutations.RESET_TIME](s: State): void;
 	[Mutations.SET_IS_ACTIVE](s: State, p: boolean): void;
 	[Mutations.SET_HAS_COMPLETED](s: State, p: boolean): void;
-};
+}

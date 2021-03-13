@@ -17,7 +17,7 @@ exports[`Components:atom:LevelUpModal Snapshots should match snapshot when modal
 			</strong>
       <p>
         You reached a new level!
-      </p> <button type=\\"button\\" class=\\"absolute right-2 top-2 bg-transparent border-0\\"><img src=\\"/icons/close.svg\\" alt=\\"Close Modal\\"></button>
+      </p> <button type=\\"button\\" class=\\"absolute right-2 top-2 bg-transparent border-0\\"><img src=\\"icons/close.svg\\" alt=\\"Close modal\\"></button>
     </div>
   </div>
 </transition-stub>"

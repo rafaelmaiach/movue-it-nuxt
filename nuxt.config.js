@@ -1,7 +1,7 @@
 export default {
 	// Global page headers: https://go.nuxtjs.dev/config-head
 	head: {
-		title: 'move-it-nuxt',
+		title: 'movue-it-nuxt',
 		htmlAttrs: {
 			lang: 'en',
 		},
