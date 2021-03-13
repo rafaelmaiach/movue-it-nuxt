@@ -1,7 +1,7 @@
 import { createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 
-import * as ChallengesState from '~/store/Challenges';
+import * as Challenges from '~/store/Challenges';
 import ChallengesGetters from '~/store/Challenges/getters';
 import ChallengesMutations from '~/store/Challenges/mutations';
 
@@ -22,7 +22,7 @@ export const setupLocalVueStore = () => {
 			Challenges: {
 				namespaced: true,
 				state: {
-					...ChallengesState.state(),
+					...Challenges.state(),
 					allChallenges: [{
 						type: 'type',
 						description: 'description',
