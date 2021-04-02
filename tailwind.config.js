@@ -1,4 +1,14 @@
 module.exports = {
+	purge: [
+		'components/**/*.vue',
+		'layouts/**/*.vue',
+		'pages/**/*.vue',
+		'plugins/**/*.js',
+		'nuxt.config.js',
+		'plugins/**/*.ts',
+		'nuxt.config.ts',
+	],
+	darkMode: false, // or 'media' or 'class'
 	theme: {
 		colors: {
 			white: '#ffffff',
@@ -16,19 +26,8 @@ module.exports = {
 			'blue-twitter': '#2aa9e0',
 		},
 	},
-	variants: {},
-	plugins: [],
-	purge: {
-		enabled: process.env.NODE_ENV === 'production',
-		content: [
-			'components/**/*.vue',
-			'layouts/**/*.vue',
-			'pages/**/*.vue',
-			'plugins/**/*.js',
-			'nuxt.config.js',
-			// TypeScript
-			'plugins/**/*.ts',
-			'nuxt.config.ts',
-		],
+	variants: {
+		extend: {},
 	},
+	plugins: [],
 };
