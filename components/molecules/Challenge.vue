@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { PropOptions } from 'vue';
 import { mapState, mapMutations } from 'vuex';
 
 import { Mutations as CountdownMT } from '~/store/Countdown/types';
@@ -35,12 +35,13 @@ import {
 	Mutations as ChallengesMT,
 } from '~/store/Challenges/types';
 
-export default Vue.extend<unknown, any, unknown, ChallengeType>({
-	props: {
-		type: { type: String, required: true },
-		description: { type: String, required: true },
-		amount: { type: Number, required: true },
-	},
+export default Vue.extend({
+props: {
+    challenge: {
+      type: Object,
+      required: true
+    } as PropOptions<ChallengeType>
+  },
 	computed: mapState('Challenges', ['level', 'xp', 'completedChallenges']),
 	methods: {
 		...mapMutations({
