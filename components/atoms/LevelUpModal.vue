@@ -3,9 +3,9 @@
 		<div
 			v-if="isLevelUpModalOpen"
 			class="overlay flex justify-center items-center bg-gray-line fixed inset-0"
-			@click="setModalState(false)"
+			@click.self="setModalState(false)"
 		>
-			<div class="bg-white w-full max-w-md p-10 rounded-md shadow-lg text-center relative" @click.stop>
+			<div class="bg-white w-full max-w-md p-10 rounded-md shadow-lg text-center relative">
 				<header class="text-9xl font-semibold text-blue bg-contain">
 					{{ level }}
 				</header>
